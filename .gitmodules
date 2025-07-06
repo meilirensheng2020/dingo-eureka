@@ -111,7 +111,7 @@
 	url = https://github.com/boostorg/boost.git
 [submodule "libusrbio"]
 	path = src/libusrbio
-	url = https://github.com/deepseek-ai/3fs
+	url = https://github.com/dingodb/3FS.git
 [submodule "rdma-core"]
 	path = rdma-core
 	url = https://github.com/linux-rdma/rdma-core.git
