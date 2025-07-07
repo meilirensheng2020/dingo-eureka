@@ -985,23 +985,6 @@ if (WITH_LIBUSRBIO AND ${PRETTY_NAME} MATCHES "Ubuntu")
         COMMAND ./patches/apply.sh
         WORKING_DIRECTORY ${LIBUSRBIO_SOURCES_DIR}
     )
-
-    # Preprocess 3fs makefile
-    execute_process(
-        COMMAND sed -i -E "/CodeCoverage.cmake|CLangFormat.cmake|CLangTidy.cmake|DumpConfig.cmake|Jemalloc.cmake|ApacheArrow.cmake/d" ${LIBUSRBIO_SOURCES_DIR}/CMakeLists.txt
-    )
-    file(WRITE "${LIBUSRBIO_SOURCES_DIR}/src/lib/api/CMakeLists.txt" [=[
-        target_add_lib(hf3fs_api client-lib-common storage-client numa rt)
-        add_library(usrbio STATIC
-            $<TARGET_OBJECTS:hf3fs_api>
-            $<TARGET_OBJECTS:client-lib-common>
-            $<TARGET_OBJECTS:core-user-fbs>
-            $<TARGET_OBJECTS:common>
-            $<TARGET_OBJECTS:fmt>
-            $<TARGET_OBJECTS:scn::scn>
-        )
-    ]=])
-
     ExternalProject_Add(
         libusrbio
         SOURCE_DIR  ${LIBUSRBIO_SOURCES_DIR}
